@@ -2,7 +2,7 @@ import styles from './R01LoginForm.module.scss'
 
 const R01LoginForm = ({children}) => {
   return (
-    <div className={styles.login-layout}>
+    <div className={styles.loginLayout}>
         {children}
     </div>
   )
