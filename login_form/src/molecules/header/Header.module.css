@@ -1,0 +1,9 @@
+.header {
+  display: flex;
+  justify-content: center;
+}
+.header .titleHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}/*# sourceMappingURL=Header.module.css.map */

@@ -1,9 +1,13 @@
 import styles from './R01LoginForm.module.scss'
+import Header from '../molecules/header/Header'
+import Footer from '../molecules/footer/Footer'
 
-const R01LoginForm = ({children}) => {
+const R01LoginForm = ({ children }) => {
   return (
     <div className={styles.loginLayout}>
-        {children}
+      <Header />
+      {children}
+      <Footer />
     </div>
   )
 }

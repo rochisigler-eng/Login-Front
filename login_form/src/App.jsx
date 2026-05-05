@@ -41,9 +41,7 @@ function App() {
           path="/dashboard"
           element={
             isAuthenticated ? (
-              <R01LoginForm>
                 <Dashboard />
-              </R01LoginForm>
             )
               : (
                 <Navigate to="/login" />

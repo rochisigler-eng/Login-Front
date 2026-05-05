@@ -1,0 +1,9 @@
+.header {
+    display: flex;
+    justify-content: center;
+    .titleHeader {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
