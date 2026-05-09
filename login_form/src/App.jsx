@@ -37,17 +37,26 @@ function App() {
             </R01LoginForm>
           }
         />
-        <Route
+        {/* <Route
           path="/dashboard"
           element={
             isAuthenticated ? (
+              <R01LoginForm>
                 <Dashboard />
+              </R01LoginForm>
             )
               : (
                 <Navigate to="/login" />
               )
           }
+        /> */}
+        <Route
+          path="/dashboard"
+          element={
+                <Dashboard />
+          }
         />
+        
       </Routes>
     </BrowserRouter>
   )

@@ -1,0 +1,26 @@
+.dashboardComponent {
+    .main {
+        display: grid;
+        width: 100%;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-areas: 
+        "welcome welcome welcome"
+        "cuenta perfil actividad"
+        "tech tech tech";
+        .welcome {
+            grid-area: welcome;
+        }
+        .cuenta {
+            grid-area: cuenta;
+        }
+         .perfil {
+            grid-area: perfil;
+        }
+        .actividad {
+            grid-area: actividad;
+        }
+        .technologies {
+            grid-area: tech;
+        }
+    }
+}
