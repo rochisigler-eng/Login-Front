@@ -3,7 +3,7 @@ import Title2 from '../../atoms/Title2'
 import Text from '../../atoms/text/Text'
 import styles from './LogHeader.module.scss'
 
-const LogHeader = () => {
+const LogHeader = ({title,text}) => {
   return (
     <div className={styles.logHeader}>
       <div className={styles.titleSection}>
@@ -18,9 +18,9 @@ const LogHeader = () => {
           backgroundPosition: 'center'
         }}
         ></i>
-        <Title2 text="Iniciar sesión"/>
+        <Title2 text={title}/>
       </div>
-      <Text text="Bienvenido de nuevo a Libro Planeta"/>
+      <Text text={text}/>
     </div>
   )
 }

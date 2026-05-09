@@ -1,6 +1,8 @@
 .header {
     display: flex;
-    justify-content: center;
+    justify-content: first baseline;
+    gap: .8rem;
+    padding: 1.5rem;
     .titleHeader {
         display: flex;
         flex-direction: column;

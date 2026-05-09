@@ -12,7 +12,7 @@ import RightArrow from '../../assets/RightArrow'
 const Login = () => {
   return (
     <section className={styles.loginCard}>
-      <LogHeader />
+      <LogHeader title="Iniciar sesión" text="Bienvenido de nuevo a Libro Planeta"/>
 
       <form className={styles.loginForm}>
         <Input text="Email" id="email" placeholder="Ingresa tu email" type="email" icon={Envelope} />
@@ -24,7 +24,7 @@ const Login = () => {
       </form>
       <div className={styles.registerLink}>
         <p>¿Todavía no tenés cuenta?</p>
-        <a href="" className={styles.registerText}>Regístrate <RightArrow /> </a>
+        <a href="/register" className={styles.registerText}>Regístrate <RightArrow /> </a>
       </div>
     </section>
   )
