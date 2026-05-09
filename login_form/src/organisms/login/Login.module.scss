@@ -1,7 +1,42 @@
-.loginForm {
+.loginCard {
     width: 30rem;
     height: 35rem;
-    border: 1px solid #94A3B8;
-    background-color: rgba(52, 57, 63, 0.2);
-    border-radius: 1rem;
+    padding: 2rem;
+    border: 1px solid rgba(120,170,255,0.25);
+    border-radius: 1.5rem;
+    background-color: rgba(5, 12, 35, 0.55);
+    backdrop-filter: blur(18px);
+    box-shadow: 0 0 30px rgba(0,110,255,0.18);
+    .loginForm {
+        .forgotPassword {
+            display: flex;
+            justify-content: flex-end;
+            padding-bottom: .9rem;
+            .forgotText {
+                text-decoration: none;
+                color: #2563EB;
+                font-size: .8rem;
+                padding-bottom: 1.5rem;
+            }
+        }
+    }
+    .registerLink {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 1.3rem;
+        color: white;
+        font-weight: 300;
+        .registerText {
+            display: flex;
+            align-items: center;
+            gap: .3rem;
+            color: #2563EB;
+            text-decoration: none;
+            transition: .2s;
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+    }
 }

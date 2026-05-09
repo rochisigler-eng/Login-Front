@@ -1,0 +1,11 @@
+.logHeader {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+    gap: .5rem;
+    .titleSection {
+        display: flex;
+        gap: .5rem;
+        align-items: center;
+    }
+}

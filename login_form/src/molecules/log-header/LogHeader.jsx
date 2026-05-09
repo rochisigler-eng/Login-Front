@@ -1,8 +1,27 @@
-
+import starIcon from '../../assets/starIcon.png'
+import Title2 from '../../atoms/Title2'
+import Text from '../../atoms/text/Text'
+import styles from './LogHeader.module.scss'
 
 const LogHeader = () => {
   return (
-    <div>LogHeader</div>
+    <div className={styles.logHeader}>
+      <div className={styles.titleSection}>
+        <i
+        style={{
+          backgroundImage: `url(${starIcon})`,
+          display: 'block',
+          width: "1.5rem",
+          height: "1.5rem",
+          backgroundSize: 'contain',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center'
+        }}
+        ></i>
+        <Title2 text="Iniciar sesión"/>
+      </div>
+      <Text text="Bienvenido de nuevo a Libro Planeta"/>
+    </div>
   )
 }
 
