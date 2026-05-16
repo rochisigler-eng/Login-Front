@@ -5,8 +5,11 @@ import Login from './organisms/login/Login'
 import Register from './organisms/register/Register'
 import Dashboard from './organisms/dashboard/Dashboard'
 
+
 function App() {
   const isAuthenticated = !!localStorage.getItem("token")
+
+
 
   return (
     <BrowserRouter>

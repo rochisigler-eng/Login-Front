@@ -1,26 +1,26 @@
 .dashboardComponent {
     .main {
         display: grid;
-        width: 100%;
+        width: 80vw;
+        gap: 1rem;
+        
         grid-template-columns: repeat(3, 1fr);
-        grid-template-areas: 
-        "welcome welcome welcome"
-        "cuenta perfil actividad"
-        "tech tech tech";
+        grid-template-areas:
+            "welcome welcome welcome"
+            "cuenta perfil actividad"
+            "tech tech tech";
+
         .welcome {
             grid-area: welcome;
+            display: flex;
+            gap: 1rem;
+            border: 1px solid rgba(120, 170, 255, 0.25);
+            border-radius: 1.5rem;
+            background-color: rgba(5, 12, 35, 0.55);
+            backdrop-filter: blur(18px);
+            box-shadow: 0 0 30px rgba(0, 110, 255, 0.18);
+            padding: 1rem;
         }
-        .cuenta {
-            grid-area: cuenta;
-        }
-         .perfil {
-            grid-area: perfil;
-        }
-        .actividad {
-            grid-area: actividad;
-        }
-        .technologies {
-            grid-area: tech;
-        }
+
     }
 }

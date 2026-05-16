@@ -1,0 +1,20 @@
+.dashFooter {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .footerPara {
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+        .planetIconFooter {
+            width: 2rem;
+            height: 2rem;
+        }
+        .starIconFooter {
+            width: 2rem;
+            height: 2rem;
+        }
+    }
+}

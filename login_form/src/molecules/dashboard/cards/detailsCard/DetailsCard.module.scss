@@ -1,0 +1,82 @@
+.detailsCard {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(120, 170, 255, 0.25);
+    background-color: rgba(5, 12, 35, 0.55);
+    backdrop-filter: blur(18px);
+    box-shadow: 0 0 30px rgba(0, 110, 255, 0.18);
+    padding: 1.5rem;
+
+    .cardHeader {
+        display: flex;
+        color: white;
+        gap: 1.5rem;
+
+        .cardIcon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #2563EB;
+            border-radius: 1rem;
+            width: 3.5rem;
+            height: 3.5rem;
+        }
+
+        .cardInfo {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            gap: .3rem;
+
+            .cardPara {
+                font-size: .9rem;
+                color: #2563EB;
+            }
+        }
+    }
+
+    .cardList {
+        color: #999;
+        font-size: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        .cardListItem {
+            text-decoration: none;
+            display: flex;
+            justify-content: space-between;
+
+            .detailInformation {
+                display: flex;
+                gap: .8rem;
+                align-items: center;
+            }
+        }
+    }
+
+    .cardlink {
+        text-decoration: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #2563EB;
+        border: 1px solid #2563EB;
+        backdrop-filter: blur(18px);
+        box-shadow: 0 0 30px rgba(0, 110, 255, 0.18);
+        border-radius: 1rem;
+        padding: .7rem;
+        cursor: pointer;
+        transition: .2s;
+        .cardLinkInfo {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        &:hover {
+            transform: translateX(5px);
+        }
+    }
+}

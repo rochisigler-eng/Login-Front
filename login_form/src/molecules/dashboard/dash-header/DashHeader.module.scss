@@ -1,0 +1,39 @@
+.dashHeader {
+    width: 80vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .headerLeft {
+        display: flex;
+        gap: .5rem;
+    }
+    .headerRight {
+    display: flex;
+    gap: 1.5rem;
+        .userInformation {
+            display: flex;
+            gap: .5rem;
+            .userAvatar {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 50%;
+                background-color: #1E3A8A;
+                color: white;
+                width: 2.3rem;
+                height: 2.3rem; 
+            }
+           
+        }
+        .logOut {
+            display: flex;
+            gap: .5rem;
+            align-items: center;
+            color: rgb(158, 3, 3);
+            border:1px solid rgb(158, 3, 3);
+            background-color: #111C3A;
+            padding: .5rem;
+            cursor: pointer;
+        }
+    }
+}
