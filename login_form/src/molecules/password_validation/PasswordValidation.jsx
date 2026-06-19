@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import styles from './PasswordValidation.module.scss'
 
-const PasswordValidation = (formData) => {
+const PasswordValidation = ({ formData, setDisabled, setFormData }) => {
     const [passStates, setPassStates] = useState({
         lower: false,
         upper: false,
@@ -11,11 +11,11 @@ const PasswordValidation = (formData) => {
     })
 
     useEffect(() => {
-        const hasLower = /(?=.*?[a-z])/.test(formData.formData.password);
-        const hasUpper = /(?=.*?[A-Z])/.test(formData.formData.password);
-        const hasNumber = /(?=.*?[0-9])/.test(formData.formData.password);
-        const hasSpecial = /(?=.*?[@$!%*?&.-])/.test(formData.formData.password);
-        const hasMinLength = /^.{8,}$/.test(formData.formData.password);
+        const hasLower = /(?=.*?[a-z])/.test(formData.password);
+        const hasUpper = /(?=.*?[A-Z])/.test(formData.password);
+        const hasNumber = /(?=.*?[0-9])/.test(formData.password);
+        const hasSpecial = /(?=.*?[@$!%*?&.-])/.test(formData.password);
+        const hasMinLength = /^.{8,}$/.test(formData.password);
 
         setPassStates({
             lower: hasLower,
@@ -25,9 +25,15 @@ const PasswordValidation = (formData) => {
             minlength: hasMinLength
         })
 
-    }, [formData.formData.password])
+    }, [formData.password])
 
-    console.log(passStates)
+    useEffect(() => {
+        if (Object.values(passStates).every(value => value === true)) {
+            setDisabled(false)
+        } else {
+            setDisabled(true)
+        }
+    }, [passStates])
 
     return (
         <div className={styles.passChecks}>
