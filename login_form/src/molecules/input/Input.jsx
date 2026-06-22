@@ -4,7 +4,7 @@ import Eye from '../../assets/Eye'
 import EyeSlash from '../../assets/EyeSlash'
 import { useState } from 'react'
 
-const Input = ({ text, size, id, placeholder, type, icon: Icon, setFormData, formData, setValidationDisplay, disabled, setIsValid }) => {
+const Input = ({ text, size, id, placeholder, type, icon: Icon, setFormData, formData, setValidationDisplay, disabled }) => {
   const [showPassword, setShowPassword] = useState(false)
   const isPassword = type === 'password'
   const isDisabled = disabled
@@ -15,7 +15,9 @@ const Input = ({ text, size, id, placeholder, type, icon: Icon, setFormData, for
       ...prevData,
       [name]: value
     }))
+
   }
+
   const renderInput = () => {
     if (type === "password") {
       if (id === "password") {
@@ -73,5 +75,6 @@ const Input = ({ text, size, id, placeholder, type, icon: Icon, setFormData, for
     </div>
   )
 }
+
 
 export default Input
