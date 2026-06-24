@@ -1,0 +1,23 @@
+.registerSuccess {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    gap: 2rem;
+
+    .loginLink {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        color: #2563EB;
+        transition: .2s;
+        gap: .3rem;
+        margin-top: 2rem;
+
+        &:hover {
+            transform: translateX(6px);
+        }
+    }
+}

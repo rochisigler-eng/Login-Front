@@ -10,6 +10,8 @@ import LogHeader from "../../molecules/log-header/LogHeader"
 import Button from "../../molecules/button/Button"
 import PasswordValidation from "../../molecules/password_validation/PasswordValidation"
 import ValidateMessage from "../../atoms/error/ValidateMessage"
+import Loading from "../../molecules/loading/Loading"
+import RegisterSuccess from "../../molecules/register_success/RegisterSuccess"
 import styles from './Register.module.scss'
 import { useEffect, useState } from "react"
 
@@ -29,6 +31,7 @@ const Register = () => {
     passwordRepeat: ""
   })
   const [message, setMessage] = useState("")
+  const [isSubmitted, setIsSubmitted] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
 
   const validUsername = formData.username !== "";
@@ -40,13 +43,13 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setIsSubmitted(true)
     setIsLoading(true)
-
     try {
-      const response = await fetch('', {
+      const response = await fetch('http://localhost:3000/auth/register', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify(formData)
       })
@@ -54,7 +57,7 @@ const Register = () => {
         throw new Error(`Server responded with status: ${response.status}`);
       }
       const result = await response.json();
-      setMessage("Success! Account created!")
+      setMessage(result.message)
     } catch (error) {
       setMessage(`Error: ${error.message}`);
     } finally {
@@ -83,36 +86,50 @@ const Register = () => {
 
   return (
     <section className={styles.registerCard}>
-      <LogHeader title="Crear cuenta" text="Sumate a la comunidad de Libro Planeta" />
+      {isSubmitted ?
+        (
+          <div className={styles.registrationProcess}>
+            {isLoading ? (
+              <Loading />
+            ) : (
+              <RegisterSuccess />
+            )}
+          </div>
+        ) : (
+          <>
+            <LogHeader title="Crear cuenta" text="Sumate a la comunidad de Libro Planeta" />
 
-      <form className={styles.registerForm} onSubmit={handleSubmit} >
-        <Input text="Nombre y apellido" id="username" placeholder="Ingresa tu nombre y apellido" type="text" icon={User} formData={formData} setFormData={setFormData} />
-        <div className={styles.flexInputs}>
-          <Input text="Fecha de Nacimiento" id="birth" placeholder="" type="date" icon={Calendar} formData={formData} setFormData={setFormData} />
-          <Input text="Email" id="email" placeholder="Ingresa tu email" type="email" icon={Envelope} formData={formData} setFormData={setFormData} />
-        </div>
-        <Input text="Dirección" id="address" placeholder="Ingresa tu dirección" type="text" icon={MapPin} formData={formData} setFormData={setFormData} />
+            <form className={styles.registerForm} onSubmit={handleSubmit} >
+              <Input text="Nombre y apellido" id="username" placeholder="Ingresa tu nombre y apellido" type="text" icon={User} formData={formData} setFormData={setFormData} />
+              <div className={styles.flexInputs}>
+                <Input text="Fecha de Nacimiento" id="birth" placeholder="" type="date" icon={Calendar} formData={formData} setFormData={setFormData} />
+                <Input text="Email" id="email" placeholder="Ingresa tu email" type="email" icon={Envelope} formData={formData} setFormData={setFormData} />
+              </div>
+              <Input text="Dirección" id="address" placeholder="Ingresa tu dirección" type="text" icon={MapPin} formData={formData} setFormData={setFormData} />
 
-        <Input text="Contraseña" id="password" placeholder="Crea una contraseña" type="password" icon={Lock} formData={formData} setFormData={setFormData} setValidationDisplay={setValidationDisplay} />
-        {validationDisplay ?
-          <PasswordValidation formData={formData} setDisabled={setDisabled} setFormData={setFormData} />
-          : null
-        }
+              <Input text="Contraseña" id="password" placeholder="Crea una contraseña" type="password" icon={Lock} formData={formData} setFormData={setFormData} setValidationDisplay={setValidationDisplay} />
+              {validationDisplay ?
+                <PasswordValidation formData={formData} setDisabled={setDisabled} setFormData={setFormData} />
+                : null
+              }
 
-        <Input text="Confirmar contraseña" id="passwordRepeat" placeholder="Repetí tu contraseña" type="password" icon={Lock} formData={formData} setFormData={setFormData} disabled={disabled} />
-        {
-          !disabled ?
-            <ValidateMessage passwordsMatch={passwordsMatch} />
-            :
-            null
-        }
-        <Button text="Crear Cuenta" icon={RocketIcon} id="registerButton" isValidForm={isValidForm} />
-      </form>
+              <Input text="Confirmar contraseña" id="passwordRepeat" placeholder="Repetí tu contraseña" type="password" icon={Lock} formData={formData} setFormData={setFormData} disabled={disabled} />
+              {
+                !disabled ?
+                  <ValidateMessage passwordsMatch={passwordsMatch} />
+                  :
+                  null
+              }
+              <Button text="Crear Cuenta" icon={RocketIcon} id="registerButton" isValidForm={isValidForm} />
+            </form>
 
-      <div className={styles.loginLink}>
-        <p>¿Ya tenés cuenta?</p>
-        <a href="/login" className={styles.loginText}>Iniciá sesión <RightArrow /> </a>
-      </div>
+            <div className={styles.loginLink}>
+              <p>¿Ya tenés cuenta?</p>
+              <a href="/login" className={styles.loginText}>Iniciá sesión <RightArrow /> </a>
+            </div>
+
+          </>)
+      }
     </section>
   )
 }

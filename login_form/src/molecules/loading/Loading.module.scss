@@ -1,0 +1,34 @@
+$total_items: 15;
+$radius : 18px;
+
+
+.dots {
+    width: 200px;
+    height: 200px;
+    position: relative;
+
+
+    .dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background-color: #fff;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        animation: 1.5s animate linear infinite;
+        animation-delay: calc(var(--i) * 0.1s);
+        transform: rotate(calc(360deg / #{$total-items} * var(--i))) translateX($radius);
+        opacity: 0;
+    }
+
+    @keyframes animate {
+        0% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 0;
+        }
+    }
+}
