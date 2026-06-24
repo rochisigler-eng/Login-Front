@@ -1,0 +1,36 @@
+.loginFailure {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    font-size: .8rem;
+    color: red;
+    border: 1px solid red;
+    background-color: rgba(255, 0, 0, .1);
+    border-radius: 10px;
+    padding: 1rem;
+    position: relative;
+    margin: .5rem 0;
+
+    .closeLoginFail {
+        position: absolute;
+        right: -.6rem;
+        top: -.6rem;
+        width: 1.6rem;
+        height: 1.6rem;
+        border: 2.5px solid red;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 750;
+        font-size: 1.5rem;
+        background-color: rgb(6, 6, 49);
+
+        &:hover {
+            cursor: pointer;
+            transform: scale(1.1);
+        }
+
+    }
+
+}
