@@ -8,7 +8,7 @@ import Lock from '../../assets/Lock'
 import Eye from '../../assets/Eye'
 import EyeSlash from '../../assets/EyeSlash'
 import RightArrow from '../../assets/RightArrow'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import LoginFailure from '../../molecules/login_fail/LoginFailure'
 
 const Login = () => {
@@ -21,10 +21,30 @@ const Login = () => {
     "email": "",
     "password": ""
   })
+  const [loading, setIsLoading] = useState(false)
+  const [message, setMessage] = useState("")
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     setIsSubmitted(true)
+    setIsLoading(true)
+    try {
+      const response = await fetch('http://localhost:3000/auth/login', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(loginData)
+      })
+      if (!response.ok) {
+        throw new Error(`Server responded with status: ${response.status}`);
+      }
+      const result = await response.json();
+    } catch (error) {
+      throw new Error(result.message)
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   console.log(displayInvalidCredentials)

@@ -45,6 +45,7 @@ const Register = () => {
     e.preventDefault()
     setIsSubmitted(true)
     setIsLoading(true)
+
     try {
       const response = await fetch('http://localhost:3000/auth/register', {
         method: 'POST',
@@ -57,7 +58,7 @@ const Register = () => {
         throw new Error(`Server responded with status: ${response.status}`);
       }
       const result = await response.json();
-      setMessage(result.message)
+      setMessage(`Welcome ${result.user.name}!!!`)
     } catch (error) {
       setMessage(`Error: ${error.message}`);
     } finally {
@@ -92,7 +93,7 @@ const Register = () => {
             {isLoading ? (
               <Loading />
             ) : (
-              <RegisterSuccess />
+              <RegisterSuccess message={message} />
             )}
           </div>
         ) : (
