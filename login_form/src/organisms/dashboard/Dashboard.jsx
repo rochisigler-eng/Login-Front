@@ -4,7 +4,7 @@ import Bienvenida from '../../molecules/dashboard/bienvenida/Bienvenida'
 import DashboardInfo from '../../molecules/dashboard-info/DashboardInfo'
 import styles from './Dashboard.module.scss'
 
-const Dashboard = () => {
+const Dashboard = ({ accessToken }) => {
   return (
     <div className={styles.dashboardComponent}>
       <DashHeader />

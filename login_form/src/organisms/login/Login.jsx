@@ -10,13 +10,14 @@ import EyeSlash from '../../assets/EyeSlash'
 import RightArrow from '../../assets/RightArrow'
 import { useEffect, useState } from 'react'
 import LoginFailure from '../../molecules/login_fail/LoginFailure'
+const { setAccessToken } = useAuth();
 
 const Login = () => {
   const [isExistingUser, setIsExistingUser] = useState(false)
   const [isPasswordCorrect, setIsPasswordCorrect] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
-  const [hasInvalidCredentials, setHasInvalidCredentials] = useState(true)
-  const [displayInvalidCredentials, setDisplayInvalidCredentials] = useState(true)
+  const [hasInvalidCredentials, setHasInvalidCredentials] = useState(false)
+  const [displayInvalidCredentials, setDisplayInvalidCredentials] = useState(false)
   const [loginData, setLoginData] = useState({
     "email": "",
     "password": ""
@@ -29,25 +30,34 @@ const Login = () => {
     setIsSubmitted(true)
     setIsLoading(true)
     try {
-      const response = await fetch('http://localhost:3000/auth/login', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(loginData)
+      const response = await axios.post("http://localhost:3000/auth/login", {
+        email,
+        password
+      }, {
+        withCredentials: true
       })
+      // fetch('http://localhost:3000/auth/login', {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json'
+      //   },
+      //   body: JSON.stringify(loginData)
+      // })
       if (!response.ok) {
         throw new Error(`Server responded with status: ${response.status}`);
       }
       const result = await response.json();
+
+      setAccessToken(result.data.accessToken)
+      Navigate('/dashboard')
+
     } catch (error) {
-      throw new Error(result.message)
+      throw new Error(`Error message from backend: ${error.message}`)
     } finally {
       setIsLoading(false)
     }
   }
 
-  console.log(displayInvalidCredentials)
 
   return (
     <section className={styles.loginCard}>
@@ -63,7 +73,7 @@ const Login = () => {
         <div className={styles.forgotPassword}>
           <a href="" className={styles.forgotText} onClick={() => alert("Jodete")}>¿Olvidaste tu contraseña?</a>
         </div>
-        <Button text="Ingresar" icon={RocketIcon} />
+        <Button id="loginButton" text="Ingresar" icon={RocketIcon} />
       </form>
       <div className={styles.registerLink}>
         <p>¿Todavía no tenés cuenta?</p>

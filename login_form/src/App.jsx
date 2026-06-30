@@ -9,8 +9,6 @@ import Dashboard from './organisms/dashboard/Dashboard'
 function App() {
   const isAuthenticated = !!localStorage.getItem("token")
 
-
-
   return (
     <BrowserRouter>
       <Routes>
@@ -28,8 +26,8 @@ function App() {
                 <Login />
               </R01LoginForm>
             ) : (
-                <Navigate to="/dashboard" />
-              )
+              <Navigate to="/dashboard" />
+            )
           }
         />
         <Route
@@ -40,7 +38,7 @@ function App() {
             </R01LoginForm>
           }
         />
-        {/* <Route
+        <Route
           path="/dashboard"
           element={
             isAuthenticated ? (
@@ -52,14 +50,7 @@ function App() {
                 <Navigate to="/login" />
               )
           }
-        /> */}
-        <Route
-          path="/dashboard"
-          element={
-                <Dashboard />
-          }
         />
-        
       </Routes>
     </BrowserRouter>
   )
