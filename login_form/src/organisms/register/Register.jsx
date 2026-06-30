@@ -42,11 +42,14 @@ const Register = () => {
 
 
   const handleSubmit = async (e) => {
+
     e.preventDefault()
+
     setIsSubmitted(true)
     setIsLoading(true)
 
     try {
+
       const response = await fetch('http://localhost:3000/auth/register', {
         method: 'POST',
         headers: {
@@ -54,11 +57,14 @@ const Register = () => {
         },
         body: JSON.stringify(formData)
       })
+
       if (!response.ok) {
         throw new Error(`Server responded with status: ${response.status}`);
       }
+
       const result = await response.json();
       setMessage(`Welcome ${result.user.name}!!!`)
+
     } catch (error) {
       setMessage(`Error: ${error.message}`);
     } finally {

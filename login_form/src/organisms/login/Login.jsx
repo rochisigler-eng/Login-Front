@@ -10,49 +10,60 @@ import EyeSlash from '../../assets/EyeSlash'
 import RightArrow from '../../assets/RightArrow'
 import { useEffect, useState } from 'react'
 import LoginFailure from '../../molecules/login_fail/LoginFailure'
-const { setAccessToken } = useAuth();
+import { useNavigate } from "react-router-dom";
+import { useAuth } from '../../hooks/useAuth'
 
 const Login = () => {
-  const [isExistingUser, setIsExistingUser] = useState(false)
-  const [isPasswordCorrect, setIsPasswordCorrect] = useState(false)
+  const { setAccessToken } = useAuth();
   const [isSubmitted, setIsSubmitted] = useState(false)
+  // reemplazar estos estados por lo que viene del back
   const [hasInvalidCredentials, setHasInvalidCredentials] = useState(false)
   const [displayInvalidCredentials, setDisplayInvalidCredentials] = useState(false)
+
   const [loginData, setLoginData] = useState({
     "email": "",
     "password": ""
   })
   const [loading, setIsLoading] = useState(false)
   const [message, setMessage] = useState("")
+  const navigate = useNavigate()
+
+
 
   const handleSubmit = async (e) => {
+
     e.preventDefault()
+
     setIsSubmitted(true)
     setIsLoading(true)
-    try {
-      const response = await axios.post("http://localhost:3000/auth/login", {
-        email,
-        password
-      }, {
-        withCredentials: true
-      })
-      // fetch('http://localhost:3000/auth/login', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json'
-      //   },
-      //   body: JSON.stringify(loginData)
-      // })
-      if (!response.ok) {
-        throw new Error(`Server responded with status: ${response.status}`);
-      }
-      const result = await response.json();
 
-      setAccessToken(result.data.accessToken)
-      Navigate('/dashboard')
+    try {
+
+      const response = await fetch(
+        'http://localhost:3000/auth/login',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          credentials: "include",
+          body: JSON.stringify(loginData)
+        })
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message)
+      }
+
+      const data = await response.json();
+
+      setAccessToken(data.accessToken)
+
+      navigate('/dashboard')
+      // guardar el refreshcookie
 
     } catch (error) {
-      throw new Error(`Error message from backend: ${error.message}`)
+      setMessage(error.message)
     } finally {
       setIsLoading(false)
     }
