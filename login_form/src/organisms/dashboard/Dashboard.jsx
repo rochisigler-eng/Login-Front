@@ -11,11 +11,12 @@ const Dashboard = () => {
 
   useEffect(() => {
     // get /dashboard. Authorization Bearer token
-    axios.get('./dashboard', {
+    console.log("in dashboard component useeffect")
+    axios.get('http://localhost:3000/dashboard', {
       headers: {
-        Authorization: `Bearer ${accessToken}`
+        'Authorization': `Bearer ${accessToken}`
       }
-    }, [])
+    }, [accessToken])
   })
 
   return (

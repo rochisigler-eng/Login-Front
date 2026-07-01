@@ -59,6 +59,8 @@ const Login = () => {
 
       setAccessToken(data.accessToken)
 
+      console.log("antes de navegar");
+
       navigate('/dashboard')
       // guardar el refreshcookie
 
